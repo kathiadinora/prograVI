@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", e=>{
             "lempiras":24.36,},
 
             longitud = {
+             "m": 1,   
             "cm": 100,
             "plg": 39.3701,
             "pie": 3.28084,
@@ -47,9 +48,9 @@ document.addEventListener("DOMContentLoaded", e=>{
     a1.innerHTML="";
   
     if(opcion.value == "moneda"){
-      var  array = ["dolar!Dolar","euro!Euro","quetzal!Quetzal","lempira!Lempira","cordoba!Cordoba"];
+      var  array = ["dolar!Dolar","colones!Colones","yenes!Yenes","rupia!Rupia","lempiras!Lempiras","peso!Peso","bitcoin!Bitcoin"];
     } else if(opcion.value == "longitud"){
-      var array = ["mm!Milimetros","cm!Centimetros","mt!Metros","km!Kilometros","milla!Millas"];
+      var array = ["m!Metro","cm!Centimetros","plg!Pulgada","pie!Pie","varas!Varas","yardas!Yardas","km!Kilometros","milla!Millas"];
     };
   
     for(var i=0;i<array.length;i++){ 

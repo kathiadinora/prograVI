@@ -1,9 +1,13 @@
 <?php
-class conexion{
+
+/**
+ * Clase de conexion al servidor de BD
+ */
+class Conexion{
     private $conexion='', $result='';
 
-    public function conexion($server, $user, $pass, $db){
-        $this->conexion = mysqli_connect($server,$user,$pass,$db) or die('Lo sentimos, no fue posible localizar la base de datos');
+    public function Conexion($server, $user, $pass, $db){
+        $this->conexion = mysqli_connect($server,$user,$pass,$db) or die('NO pude conectarme al servidor de BD');
     }
     public function consultas($sql=''){
         $this->result = mysqli_query($this->conexion,$sql) or die(mysqli_error($this->conexion));

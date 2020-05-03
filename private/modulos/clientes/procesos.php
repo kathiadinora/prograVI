@@ -1,10 +1,10 @@
-<?php
-include('../../config/config.php');
+<?php 
+include('../../Config/Config.php');
 $cliente = new cliente($conexion);
 
 $proceso = '';
 if( isset($_GET['proceso']) && strlen($_GET['proceso'])>0 ){
-    $proceso = $_GET['proceso'];
+	$proceso = $_GET['proceso'];
 }
 $cliente->$proceso( $_GET['cliente'] );
 print_r(json_encode($cliente->respuesta));
@@ -12,7 +12,7 @@ print_r(json_encode($cliente->respuesta));
 class cliente{
     private $datos = array(), $db;
     public $respuesta = ['msg'=>'correcto'];
-
+    
     public function __construct($db){
         $this->db=$db;
     }
@@ -22,19 +22,12 @@ class cliente{
     }
     private function validar_datos(){
         if( empty($this->datos['nombre']) ){
-            $this->respuesta['msg']= 'Ingrese su nombre';
+            $this->respuesta['msg'] = 'por favor ingrese el nombre del cliente';
         }
         if( empty($this->datos['direccion']) ){
-            $this->respuesta['msg']= 'Ingrese su direccion';
-        }
-        if( empty($this->datos['telefono']) ){
-            $this->respuesta['msg']= 'Ingrese su numero de telefono';
-        }
-        if( empty($this->datos['dui']) ){
-            $this->respuesta['msg']= 'Ingrese su numero de DUI';
+            $this->respuesta['msg'] = 'por favor ingrese la direccion del cliente';
         }
         $this->almacenar_cliente();
-
     }
     private function almacenar_cliente(){
         if( $this->respuesta['msg']==='correcto' ){
@@ -44,28 +37,28 @@ class cliente{
                         "'. $this->datos['nombre'] .'",
                         "'. $this->datos['direccion'] .'",
                         "'. $this->datos['telefono'] .'",
-                        "'. $this->datos['dui'] .'",
+                        "'. $this->datos['dui'] .'"
                     )
                 ');
-                $this->respuesta['msg'] = 'El registro guardado exitosamnete';
+                $this->respuesta['msg'] = 'Registro insertado correctamente';
             } else if( $this->datos['accion']==='modificar' ){
                 $this->db->consultas('
-                   UPDATE cliente SET
-                        nombre   ="'. $this->datos['nombre'] .'",
-                        direccion ="'. $this->datos['direecion'] .'",
-                        telefono ="'. $this->datos['telefono'] .'",
-                        dui    ="'. $this->datos['dui'] .'",
-                    WHERE idCliente = "'. $this->['idCliente'] .'"    
+                   UPDATE clientes SET
+                        nombre     = "'. $this->datos['nombre'] .'",
+                        direccion  = "'. $this->datos['direccion'] .'",
+                        telefono  = "'. $this->datos['telefono'] .'",
+                        dui   = "'. $this->datos['dui'] .'"
+                    WHERE idCliente = "'. $this->datos['idCliente'] .'"
                 ');
-                $this->respuesta['msg'] = 'El registro fue actualizado exitosamente'
+                $this->respuesta['msg'] = 'Registro actualizado correctamente';
             }
         }
     }
     public function buscarCliente($valor=''){
         $this->db->consultas('
-            select clientes.idCliente, cliente.nombre, cliente.direccion, cliente.telefono, cliente.dui
+            select clientes.idCliente, clientes.nombre, clientes.direccion, clientes.telefono, clientes.dui
             from clientes
-            where clientes.codigo like "%'.$valor.'%" or clientes.nombre like "%'.$valor.'%" or cliente.dui like "%'.$valor.'%"
+            where clientes.nombre like "%'.$valor.'%" or clientes.telefono like "%'.$valor.'%" or clientes.dui like "%'.$valor.'%"
         ');
         return $this->respuesta = $this->db->obtener_datos();
     }
@@ -75,8 +68,7 @@ class cliente{
             from clientes
             where clientes.idCliente = "'.$idCliente.'"
         ');
-        $this->respuesta['msg'] = 'El registro fue eliminado exitosamente';
+        $this->respuesta['msg'] = 'Registro eliminado correctamente';
     }
 }
-
 ?>

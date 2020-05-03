@@ -1,60 +1,60 @@
-<form v-on:submit.prevent="guardarMateria" data-accion="nuevo" data-idmateria='' id="frm-materias" method="post">
+<form v-on:submit.prevent="guardarCliente" data-accion="nuevo" data-idcliente='' id="frm-clientes" method="post">
     <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
         <div class="card-header">
-            Mantenimiento Materias
+            Mantenimiento Clientes 
         
-            <button type="button" id="btn-close-materias" class="close" aria-label="Close">
+            <button type="button" id="btn-close-clientes" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="card-body">
             <div class="row p-2">
                 <div class="col-4">
-                    CODIGO
+                    NOMBRE
                 </div>
-                <div class="col-6">
-                    <input type="text" v-model="materia.codigo" placeholder="AAAA000000" class="form-control">
+                <div class="col-8">
+                    <input type="text" v-model="cliente.nombre" placeholder="AAAAAA" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-4">
-                    MATERIA
+                    DIRECCION
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="materia.materia" placeholder="AAAAA AAAAA" class="form-control">
+                    <input type="text" v-model="cliente.direccion" placeholder="AAAAAAAAAA" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-4">
-                    CARRERA
+                    TEL
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="materia.carrera" placeholder="AAAAAAAAAA AA AAAAAAAAAA" class="form-control">
+                    <input type="text" v-model="cliente.telefono" placeholder="0000-0000" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-4">
-                    FACULTAD
+                    DUI
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="materia.facultad" placeholder="AAAAAAAAAA A AAAAAAAAAA" class="form-control">
+                    <input type="text" v-model="cliente.dui" placeholder="00000000-0" class="form-control">
                 </div>
             </div>
             <div class="row p-2"> 
                 <div class="col-12 text-center">
-                    <input id="btnguardarMaterias" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
+                    <input id="btnguardarClientes" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
                     <input type="reset" class="btn btn-outline-warning text-white" value="Limpiar">
-                    <input type="button" class="btn btn-outline-success mostrar-buscar-materias text-white" data-modulo="materias" data-form="buscar-materias" value="Buscar">
+                    <input type="button" class="btn btn-outline-success mostrar-buscar-clientes text-white" data-modulo="clientes" data-form="buscar-clientes" value="Buscar">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-12 text-center">
                     <div class="alert alert-success" role="alert">
-                        {{ materia.msg }}
+                        {{ cliente.msg }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<script src="public/vistas/materias/materias.js"></script>
+<script src="public/vistas/clientes/clientes.js"></script>

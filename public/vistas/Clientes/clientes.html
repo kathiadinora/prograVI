@@ -1,27 +1,19 @@
-<form v-on:submit.prevent="guardarDocente" data-accion="nuevo" data-iddocente='' id="frm-docentes" method="post">
+<form v-on:submit.prevent="guardarCliente" data-accion="nuevo" data-idcliente='' id="frm-clientes" method="post">
     <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
         <div class="card-header">
-            Mantenimiento Docentes
+            Mantenimiento Clientes 
         
-            <button type="button" id="btn-close-docentes" class="close" aria-label="Close">
+            <button type="button" id="btn-close-clientes" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="card-body">
             <div class="row p-2">
                 <div class="col-4">
-                    CODIGO
-                </div>
-                <div class="col-6">
-                    <input type="text" v-model="docente.codigo" placeholder="AAAA000000" class="form-control">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-4">
                     NOMBRE
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="docente.nombre" placeholder="AAA AAA" class="form-control">
+                    <input type="text" v-model="cliente.nombre" placeholder="AAAAAA" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
@@ -29,7 +21,7 @@
                     DIRECCION
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="docente.direccion" placeholder="AAA" class="form-control">
+                    <input type="text" v-model="cliente.direccion" placeholder="AAAAAAAAAA" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
@@ -37,32 +29,32 @@
                     TEL
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="docente.telefono" placeholder="0000-0000" class="form-control">
+                    <input type="text" v-model="cliente.telefono" placeholder="0000-0000" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-4">
-                    NIT
+                    DUI
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="docente.nit" placeholder="0000-000000-000-0" class="form-control">
+                    <input type="text" v-model="cliente.dui" placeholder="00000000-0" class="form-control">
                 </div>
             </div>
             <div class="row p-2"> 
                 <div class="col-12 text-center">
-                    <input id="btnguardarDocentes" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
+                    <input id="btnguardarClientes" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
                     <input type="reset" class="btn btn-outline-warning text-white" value="Limpiar">
-                    <input type="button" class="btn btn-outline-success mostrar-buscar-docentes text-white" data-modulo="docentes" data-form="buscar-docentes" value="Buscar">
+                    <input type="button" class="btn btn-outline-success mostrar-buscar-clientes text-white" data-modulo="clientes" data-form="buscar-clientes" value="Buscar">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-12 text-center">
                     <div class="alert alert-success" role="alert">
-                        {{ docente.msg }}
+                        {{ cliente.msg }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<script src="public/vistas/docentes/docentes.js"></script>
+<script src="public/vistas/clientes/clientes.js"></script>

@@ -1,26 +1,26 @@
-var appBuscarMaterias = new Vue({
-    el:'#frm-buscar-materias',
+var appBuscarClientes = new Vue({
+    el:'#frm-buscar-clientes',
     data:{
-        mismaterias:[],
+        misclientes:[], 
         valor:''
     },
     methods:{
-        buscarMateria:function(){
-            fetch(`private/Modulos/materias/procesos.php?proceso=buscarMateria&materia=${this.valor}`).then(resp=>resp.json()).then(resp=>{
-                this.mismaterias = resp;
+        buscarCliente:function(){
+            fetch(`private/Modulos/clientes/procesos.php?proceso=buscarCliente&cliente=${this.valor}`).then(resp=>resp.json()).then(resp=>{
+                this.misclientes = resp;
             });
         },
-        modificarMateria:function(materia){
-            appmateria.materia = materia;
-            appmateria.materia.accion = 'modificar';
+        modificarCliente:function(cliente){
+            appcliente.cliente = cliente;
+            appcliente.cliente.accion = 'modificar';
         },
-        eliminarMateria:function(idMateria){
-            fetch(`private/Modulos/materias/procesos.php?proceso=eliminarMateria&materia=${idMateria}`).then(resp=>resp.json()).then(resp=>{
-                this.buscarMateria();
+        eliminarCliente:function(idCliente){
+            fetch(`private/Modulos/clientes/procesos.php?proceso=eliminarCliente&cliente=${idCliente}`).then(resp=>resp.json()).then(resp=>{
+                this.buscarCliente();
             });
         }
     },
     created:function(){
-        this.buscarMateria();
+        this.buscarCliente();
     }
 });

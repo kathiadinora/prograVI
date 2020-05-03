@@ -1,27 +1,27 @@
-var appmateria = new Vue({
-    el:'#frm-materias',
+var appcliente = new Vue({
+    el:'#frm-clientes',
     data:{
-        materia:{
-            idMateria  : 0,
+        cliente:{ 
+            idCliente  : 0,
             accion    : 'nuevo',
-            codigo    : '',
-            materia    : '',
-            carrera : '',
-            facultad  : '',
+            nombre    : '',
+            direccion : '',
+            telefono  : '',
+            dui  : '',
             msg       : ''
         }
     },
     methods:{
-        guardarMateria:function(){
-            fetch(`private/Modulos/materias/procesos.php?proceso=recibirDatos&materia=${JSON.stringify(this.materia)}`).then( resp=>resp.json() ).then(resp=>{
-                this.materia.msg = resp.msg;
-                this.materia.idMateria = 0;
-                this.materia.codigo = '';
-                this.materia.materia = '';
-                this.materia.carrera = '';
-                this.materia.facultad = '';
-                this.materia.accion = 'nuevo';
-                appBuscarMaterias.buscarMateria();
+        guardarCliente:function(){
+            fetch(`private/Modulos/clientes/procesos.php?proceso=recibirDatos&cliente=${JSON.stringify(this.cliente)}`).then( resp=>resp.json() ).then(resp=>{
+                this.cliente.msg = resp.msg;
+                this.cliente.idCliente = 0;
+                this.cliente.nombre = '';
+                this.cliente.direccion = '';
+                this.cliente.telefono = '';
+                this.cliente.dui = '';
+                this.cliente.accion = 'nuevo';
+                appBuscarClientes.buscarCliente();
             });
         }
     }

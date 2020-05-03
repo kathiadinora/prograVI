@@ -1,81 +1,74 @@
 <?php 
-include('../../config/config.php');
-$pelicula = new pelicula($conexion);
+include('../../Config/Config.php');
+$cliente = new cliente($conexion);
 
 $proceso = '';
 if( isset($_GET['proceso']) && strlen($_GET['proceso'])>0 ){
-    $proceso = $_GET['proceso'];
+	$proceso = $_GET['proceso'];
 }
-$pelicula->$proceso( $_GET['pelicula'] );
-print_r(json_encode($pelicula->respuesta));
+$cliente->$proceso( $_GET['cliente'] );
+print_r(json_encode($cliente->respuesta));
 
-class pelicula{
-    private $dato = array(), $db;
+class cliente{
+    private $datos = array(), $db;
     public $respuesta = ['msg'=>'correcto'];
-
+    
     public function __construct($db){
         $this->db=$db;
     }
-    public function recibirDatos($peliculas){
-        $this->datos = json_decode($pelicula, true);
+    public function recibirDatos($cliente){
+        $this->datos = json_decode($cliente, true);
         $this->validar_datos();
     }
     private function validar_datos(){
         if( empty($this->datos['nombre']) ){
-            $this->respuesta['msg'] = 'Nombre de la pelicula';
+            $this->respuesta['msg'] = 'por favor ingrese el nombre del cliente';
         }
-        if( empty($this->datos['sinopsis']) ){
-            $this->respuesta['msg'] = 'Sinopsis de la pelicula';
+        if( empty($this->datos['direccion']) ){
+            $this->respuesta['msg'] = 'por favor ingrese la direccion del cliente';
         }
-        if( empty($this->datos['genero']) ){
-            $this->respuesta['msg'] = 'Genero de la pelicula';
-        }
-        if( empty($this->datos['duracion']) ){
-            $this->respuesta['msg'] = 'Duracion de la pelicula';
-        }
-        $this->almacenar_pelicula();
+        $this->almacenar_cliente();
     }
-    private function almacenar_pelicula(){
+    private function almacenar_cliente(){
         if( $this->respuesta['msg']==='correcto' ){
             if( $this->datos['accion']==='nuevo' ){
                 $this->db->consultas('
-                    INSERT INTO pelicula (nombre,sinopsis,genero,duracion) VALUES(
+                    INSERT INTO clientes (nombre,direccion,telefono,dui) VALUES(
                         "'. $this->datos['nombre'] .'",
-                        "'. $this->datos['sinopsis'] .'",
-                        "'. $this->datos['genero'] .'",
-                        "'. $this->datos['duracion'] .'",
+                        "'. $this->datos['direccion'] .'",
+                        "'. $this->datos['telefono'] .'",
+                        "'. $this->datos['dui'] .'"
                     )
                 ');
-                $this->respuesta['msg'] = 'El registro fue guardado exitosamente'
+                $this->respuesta['msg'] = 'Registro insertado correctamente';
             } else if( $this->datos['accion']==='modificar' ){
                 $this->db->consultas('
-                   UPDATE pelicula SET 
-                        nombre  = "'. $this->datos['nombre'] .'",
-                        sinopsis = "'. $this->datos['sinopsis'] .'",
-                        genero  = "'. $this->datos['genero'] .'",
-                        duracion  = "'. $this->datos['duracion'] .'",
-                    WHERE idPelicula = "'. $this->datos['idPeicula'] .'",
+                   UPDATE clientes SET
+                        nombre     = "'. $this->datos['nombre'] .'",
+                        direccion  = "'. $this->datos['direccion'] .'",
+                        telefono  = "'. $this->datos['telefono'] .'",
+                        dui   = "'. $this->datos['dui'] .'"
+                    WHERE idCliente = "'. $this->datos['idCliente'] .'"
                 ');
-                $this->respuesta['msg'] = 'El registro fue actualizado exitosamente'
+                $this->respuesta['msg'] = 'Registro actualizado correctamente';
             }
         }
     }
-    public function buscarPelicula($valor=''){
+    public function buscarCliente($valor=''){
         $this->db->consultas('
-            select peliculas.idPelicula, peliculas.nombre, peliculas.sinopsis, peliculas.genero, peliculas.duracion
-            from peliculas
-            where peliculas.nombre like "%'.$valor.'%" or peliculas.genero like "%'.$valor.'%"
+            select clientes.idCliente, clientes.nombre, clientes.direccion, clientes.telefono, clientes.dui
+            from clientes
+            where clientes.nombre like "%'.$valor.'%" or clientes.telefono like "%'.$valor.'%" or clientes.dui like "%'.$valor.'%"
         ');
         return $this->respuesta = $this->db->obtener_datos();
     }
-    public function eliminarPelicula($idPelicula=''){
+    public function eliminarCliente($idCliente=''){
         $this->db->consultas('
-            delete peliculas
-            from peliculas
-            where peliculas.idPelicula = "'.$idPelicula.'"
+            delete clientes
+            from clientes
+            where clientes.idCliente = "'.$idCliente.'"
         ');
-        $this->respuesta['msg'] = 'El registro se elimino exitosamente'
+        $this->respuesta['msg'] = 'Registro eliminado correctamente';
     }
 }
-
 ?>

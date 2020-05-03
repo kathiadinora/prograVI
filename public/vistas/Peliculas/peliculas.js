@@ -1,27 +1,27 @@
-var appcliente = new Vue({
-    el:'#frm-clientes',
-    data:{
-        cliente:{ 
-            idCliente  : 0,
+var apppelicula = new Vue({
+    el:'#frm-peliculas',
+    data:{ 
+        pelicula:{ 
+            idPelicula  : 0,
             accion    : 'nuevo',
-            nombre    : '',
-            direccion : '',
-            telefono  : '',
-            dui  : '',
+            descripcion    : '',
+            sinopsis : '',
+            genero  : '',
+            duracion  : '',
             msg       : ''
         }
     },
     methods:{
-        guardarCliente:function(){
-            fetch(`private/Modulos/clientes/procesos.php?proceso=recibirDatos&cliente=${JSON.stringify(this.cliente)}`).then( resp=>resp.json() ).then(resp=>{
-                this.cliente.msg = resp.msg;
-                this.cliente.idCliente = 0;
-                this.cliente.nombre = '';
-                this.cliente.direccion = '';
-                this.cliente.telefono = '';
-                this.cliente.dui = '';
-                this.cliente.accion = 'nuevo';
-                appBuscarClientes.buscarCliente();
+        guardarPelicula:function(){
+            fetch(`private/Modulos/peliculas/procesos.php?proceso=recibirDatos&pelicula=${JSON.stringify(this.pelicula)}`).then( resp=>resp.json() ).then(resp=>{
+                this.pelicula.msg = resp.msg;
+                this.pelicula.idPelicula = 0;
+                this.pelicula.descripcion = '';
+                this.pelicula.sinopsis = '';
+                this.pelicula.genero = '';
+                this.pelicula.duracion = '';
+                this.pelicula.accion = 'nuevo';
+                appBuscarPeliculas.buscarPelicula();
             });
         }
     }

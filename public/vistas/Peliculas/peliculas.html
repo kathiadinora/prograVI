@@ -1,60 +1,60 @@
-<form v-on:submit.prevent="guardarCliente" data-accion="nuevo" data-idcliente='' id="frm-clientes" method="post">
+<form v-on:submit.prevent="guardarPelicula" data-accion="nuevo" data-idpelicula='' id="frm-peliculas" method="post">
     <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
         <div class="card-header">
-            Mantenimiento Clientes 
+            Mantenimiento Peliculas 
         
-            <button type="button" id="btn-close-clientes" class="close" aria-label="Close">
+            <button type="button" id="btn-close-peliculas" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="card-body">
             <div class="row p-2">
                 <div class="col-4">
-                    NOMBRE
+                    DESCRIPCION
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="cliente.nombre" placeholder="AAAAAA" class="form-control">
+                    <input type="text" v-model="pelicula.descripcion" placeholder="AAAAAAAAAA" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-4">
-                    DIRECCION
+                    SINOPSIS
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="cliente.direccion" placeholder="AAAAAAAAAA" class="form-control">
+                    <input type="text" v-model="pelicula.sinopsis" placeholder="AAAAAAAAAA" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-4">
-                    TEL
+                    GENERO
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="cliente.telefono" placeholder="0000-0000" class="form-control">
+                    <input type="text" v-model="pelicula.genero" placeholder="AAAAAAAAAA" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-4">
-                    DUI
+                    DURACION
                 </div>
                 <div class="col-8">
-                    <input type="text" v-model="cliente.dui" placeholder="00000000-0" class="form-control">
+                    <input type="text" v-model="pelicula.duracion" placeholder="AAAAAAAAAA" class="form-control">
                 </div>
             </div>
             <div class="row p-2"> 
                 <div class="col-12 text-center">
-                    <input id="btnguardarClientes" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
+                    <input id="btnguardarpeliculas" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
                     <input type="reset" class="btn btn-outline-warning text-white" value="Limpiar">
-                    <input type="button" class="btn btn-outline-success mostrar-buscar-clientes text-white" data-modulo="clientes" data-form="buscar-clientes" value="Buscar">
+                    <input type="button" class="btn btn-outline-success mostrar-buscar-peliculas text-white" data-modulo="peliculas" data-form="buscar-peliculas" value="Buscar">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-12 text-center">
                     <div class="alert alert-success" role="alert">
-                        {{ cliente.msg }}
+                        {{ pelicula.msg }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<script src="public/vistas/clientes/clientes.js"></script>
+<script src="public/vistas/peliculas/peliculas.js"></script>

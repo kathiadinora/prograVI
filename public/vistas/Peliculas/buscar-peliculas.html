@@ -1,5 +1,5 @@
 <form method="POST" id="frm-buscar-peliculas">
-    <div class="card text-white bg-dark mb-3" style="max-width: 48rem;">
+    <div class="card text-black" style="max-width: 48rem;">
         <div class="car-header">
             BUSQUEDA DE PELICULAS 
 
@@ -30,7 +30,7 @@
                         <td>{{ pelicula.genero }}</td>
                         <td>{{ pelicula.duracion }}</td>
                         <td>
-                            <input v-on:click="eliminarPelicula(pelicula.idPelicula)" type="button" class="btn btn-outline-danger text-white" value="del">
+                            <input v-on:click="eliminarPelicula(pelicula.idPelicula)" type="button" class="btn btn-outline-danger text-black" value="del">
                         </td>
                     </tr>
                 </tbody>

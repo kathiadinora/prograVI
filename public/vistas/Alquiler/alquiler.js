@@ -1,20 +1,21 @@
 Vue.component('v-select', VueSelect.VueSelect);
+
 var appalquiler = new Vue({
     el:'#frm-alquiler',
     data:{
         alquiler:{
             idAlquiler : 0,
             accion    : 'nuevo',
-            clientes   : {
+            cliente   : {
                 idCliente : 0,
-                nombre   : ''
+                cliente   : ''
             },
-            peliculas    : {
+            pelicula    : {
                 idPelicula : 0,
-                descripcion   : ''
+                pelicula   : ''
             },
-            fechaprestamo    : '',
-            fechadevolucion      :'',
+            fechaPrestamo    : '',
+            fechaDevolucion      :'',
             msg       : ''
         },
         cliente : {},
@@ -23,8 +24,6 @@ var appalquiler = new Vue({
     methods:{
         guardarAlquiler(){
             fetch(`private/Modulos/alquiler/procesos.php?proceso=recibirDatos&alquiler=${JSON.stringify(this.alquiler)}`).then( resp=>resp.json() ).then(resp=>{
-               
-               
                 this.alquiler.msg = resp.msg;
             });
         },
@@ -33,16 +32,16 @@ var appalquiler = new Vue({
             this.alquiler.accion="nuevo";
             this.alquiler.alquiler='';
             this.alquiler.cliente='';
-            this.alquiler.peliculas='';
-            this.alquiler.fechaP='';
-            this.alquiler.fechaD='';
+            this.alquiler.pelicula='';
+            this.alquiler.fechaprestamo='';
+            this.alquiler.fechadevolucion='';
             this.alquiler.msg="";
         }
     },
     created(){
         fetch(`private/Modulos/alquiler/procesos.php?proceso=traer_cliente_pelicula&alquiler=''`).then( resp=>resp.json() ).then(resp=>{
-            this.cliente = resp.clientes;
-            this.pelicula = resp.peliculas;
+            this.clientes = resp.clientes;
+            this.peliculas = resp.peliculas;
         });
     }
 });

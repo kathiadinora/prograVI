@@ -11,32 +11,32 @@
             <div class="row row-cols-1 p-2">
                 <div class="row-col">
                     <div class="col-6 float-left">
-                        Fecha Prestamo
-                        <input type="date" required v-model="alquiler.fechaP" class="form-control form-control-sm">
+                        FECHA PRESTAMO
+                        <input type="date" required v-model="alquiler.fechaprestamo" class="form-control form-control-sm">
                     </div>
                     <div class="col-6 float-right">
-                        Fecha Devolucion
-                        <input type="date" required v-model="alquiler.fechaD" class="form-control form-control-sm">
+                        FECHA DEVOLUCION
+                        <input type="date" required v-model="alquiler.fechadevolucion" class="form-control form-control-sm">
                     </div>
                 </div>
             </div>
             <div class="row-col">
                 <div class="col-6 float-left">
-                    PELICULA
-                    <v-select class="bg-primary" v-model="alquiler.pelicula":options="pelicula" placeholder="Pelicula" />
+                    CLIENTE
+                    <v-select class="bg-primary" v-model="alquiler.cliente":options="cliente" placeholder="Cliente"/>
                 </div>
                 <div class="col-6 float-right">
-                    CLIENTE
-                    <v-select class="bg-primary" v-model="alquiler.cliente":options="cliente" placeholder="Cliente" />
+                    PELICULA
+                    <v-select class="bg-primary" v-model="alquiler.pelicula":options="pelicula" placeholder="Pelicula" />
                 </div>
             </div>
             <div class="row row-cols-1 p-2">
                 <div class="row-col">
                     <div class="col">
-                        VALOR:
+                        VALOR
                     </div>
                     <div class="col">
-                        <input type="text" required v-model="alquiler.valor" class="form-control form-control-sm">
+                        <input type="text" required v-model="alquiler.valor" placeholder="$$$" class="form-control form-control-sm">
                     </div>
                 </div>
             </div>

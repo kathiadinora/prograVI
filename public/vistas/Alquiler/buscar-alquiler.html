@@ -1,7 +1,7 @@
 <form method="POST" id="frm-buscar-alquiler">
-    <div class="card text-white bg-dark mb-3" style="max-width: 48rem;">
+    <div class="card text-white bg-dark mb-3">
         <div class="car-header">
-            BUSQUEDA DE ALQUILER 
+            BUSQUEDA ALQUILER
 
             <button type="button" id="btn-close-buscar-alquiler" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -12,32 +12,36 @@
                 <thead>
                     <tr>
                         <th colspan="5">
-                            <input type="text" v-model="valor" v-on:keyup="buscarAlquiler" placeholder="Cliente, Pelicula o Valor" class="form-control">
+                            <input type="text" v-model="valor" v-on:keyup="buscarAlquiler"  placeholder="Cliente, Pelicula o Valor" class="form-control">
                         </th>
                     </tr>
                     <tr>
                         <th>CLIENTE</th>
                         <th>PELICULA</th>
-                        <th>FECHA DE PRESTAMO</th>
-                        <th>FECHA DE DEVOLUCION</th>
+                        <th>FECHA PRESTAMO</th>
+                        <th>FECHA DEVOLUCION</th>
                         <th>VALOR</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="alquiler in misalquiler" :key="alquiler.idAlquiler" v-on:click="modificarAlquiler(alquiler)">
-                        <td>{{ alquiler.fechaprestamo }}</td>
-                        <td>{{ alquiler.fechadevolucion }}</td>
-                        <td>{{ alquiler.cliente }}</td>
-                        <td>{{ alquiler.pelicula }}</td>
-                        <td>{{ alquiler.valor }}</td>
+                    <tr v-for="alquileres in misalquiler" :key="alquileres.idalquiler" v-on:click="modificarAlquiler(alquileres)">
+                        <td>{{ alquileres.cliente.label }}</td>
+                        <td>{{ alquileres.peliculas.label }}</td>
+                        <td>{{ alquileres.fechaprestamo }}</td>
+                        <td>{{ alquileres.fechadevolucion }}</td>
+                        <td>{{ alquileres.valor }}</td>
                         <td>
-                            <input v-on:click="eliminarAlquiler(alquiler.idAlquiler)" type="button" class="btn btn-outline-danger text-white" value="del">
+                            <input v-on:click=" eliminarAlquiler(alquileres.idalquiler)" type="button" class="btn btn-outline-danger text-white" value="del">
                         </td>
                     </tr>
                 </tbody>
+                
             </table>
         </div>
     </div>
+   
+
 </form>
+
 <script src="public/vistas/alquiler/buscar-alquiler.js"></script>

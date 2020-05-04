@@ -9,7 +9,7 @@ var appalquiler = new Vue({
                 idCliente : 0,
                 nombre   : ''
             },
-            pelicula   : {
+            peliculas    : {
                 idPelicula : 0,
                 descripcion   : ''
             },
@@ -33,16 +33,16 @@ var appalquiler = new Vue({
             this.alquiler.accion="nuevo";
             this.alquiler.alquiler='';
             this.alquiler.cliente='';
-            this.alquiler.pelicula='';
-            this.alquiler.fechaprestamo='';
-            this.alquiler.fechadevolucion='';
+            this.alquiler.peliculas='';
+            this.alquiler.fechaP='';
+            this.alquiler.fechaD='';
             this.alquiler.msg="";
         }
     },
     created(){
         fetch(`private/Modulos/alquiler/procesos.php?proceso=traer_cliente_pelicula&alquiler=''`).then( resp=>resp.json() ).then(resp=>{
-            this.cliente = resp.cliente;
-            this.pelicula = resp.pelicula;
+            this.cliente = resp.clientes;
+            this.pelicula = resp.peliculas;
         });
     }
 });

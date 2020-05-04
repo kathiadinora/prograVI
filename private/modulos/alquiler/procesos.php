@@ -1,9 +1,4 @@
-<?php
-include('../../Config/Config.php');
-$alquiler = new alquiler($Conexion  );
-
-$proceso = '';
-if( isset($_GET['proceso']) && strlen($_GET['proceso'])>0 ){ 
+if( isset($_GET['proceso']) && strlen($_GET['proceso'])>0 ){
 	$proceso = $_GET['proceso'];
 }
 $alquiler->$proceso( $_GET['alquiler'] );
@@ -25,7 +20,7 @@ class alquiler{
             $this->respuesta['msg'] = 'por favor ingrese el cliente del alquiler';
         }
         if( empty($this->datos['pelicula']['id']) ){
-            $this->respuesta['msg'] = 'por favor ingrese la pelicula';
+            $this->respuesta['msg'] = 'por favor ingrese el pelicula';
         }
         $this->almacenar_alquiler();
     }
@@ -56,13 +51,13 @@ class alquiler{
             }
         }
     }
-    public function buscarAlquiler($valor = ''){
+    public function buscaralquiler($valor = ''){
         if( substr_count($valor, '-')===2 ){
             $valor = implode('-', array_reverse(explode('-',$valor)));
         }
         $this->db->consultas('
-        SELECT alquiler.idalquiler,alquiler.idcliente,alquiler.idpelicula,alquiler.fechaprestamo,alquiler.fechadevolucion,pelicula.descripcion,cliente.nombre,alquiler.valor from alquiler JOIN pelicula ON(pelicula.idpelicula=alquiler.idpelicula) JOIN cliente ON(cliente.idcliente=alquiler.idcliente)
-            WHERE pelicula.descripcion like "%'. $valor .'%" or cliente.nombre like "%'. $valor .'%" or alquiler.valor like "%'. $valor .'%" 
+        SELECT alquiler.idalquiler,alquiler.idcliente,alquiler.idpelicula,alquiler.fechaprestamo,alquiler.fechadevolucion,peliculas.descripcion,cliente.nombre,alquiler.valor from alquiler JOIN peliculas ON(peliculas.idpelicula=alquiler.idpelicula) JOIN cliente ON(cliente.idcliente=alquiler.idcliente)
+            WHERE peliculas.descripcion like "%'. $valor .'%" or cliente.nombre like "%'. $valor .'%" or alquiler.valor like "%'. $valor .'%" 
         ');
         $alquiler = $this->respuesta = $this->db->obtener_datos();
         foreach ($alquiler as $key => $value) {
@@ -72,7 +67,7 @@ class alquiler{
                     'id'      => $value['idcliente'],
                     'label'   => $value['nombre']
                 ],
-                'pelicula'    => [
+                'peliculas'    => [
                     'id'      => $value['idpelicula'],
                     'label'   => $value['descripcion']
                 ],
@@ -90,11 +85,11 @@ class alquiler{
         ');
         $cliente = $this->db->obtener_datos();
         $this->db->consultas('
-            select pelicula.descripcion AS label, pelicula.idpelicula AS id
-            from pelicula
+            select peliculas.descripcion AS label, peliculas.idpelicula AS id
+            from peliculas
         ');
         $pelicula = $this->db->obtener_datos();
-        return $this->respuesta = ['clientes'=>$cliente, 'pelicula'=>$pelicula ];
+        return $this->respuesta = ['clientes'=>$cliente, 'peliculas'=>$pelicula ];
     }
     public function eliminaralquiler($idalquiler = 0){
         $this->db->consultas('

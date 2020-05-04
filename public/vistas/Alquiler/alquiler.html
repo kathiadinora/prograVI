@@ -1,60 +1,61 @@
-<form v-on:submit.prevent="guardarAlumno" data-accion="nuevo" data-idalumno='' id="frm-alumnos" method="post">
+<form v-on:submit.prevent="guardarAlquiler" data-accion="nuevo" data-idalumno='' id="frm-alumnos" method="post">
     <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
         <div class="card-header">
-            Mantenimiento Alumnos
+            Alquiler De Peliculas
         
-            <button type="button" id="btn-close-alumnos" class="close" aria-label="Close">
+            <button type="button" id="btn-close-alquiler" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="card-body">
-            <div class="row p-2">
-                <div class="col-4">
-                    CODIGO
-                </div>
-                <div class="col-6">
-                    <input type="text" v-model="alumno.codigo" placeholder="AAAA000000" class="form-control">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-4">
-                    NOMBRE
-                </div>
-                <div class="col-8">
-                    <input type="text" v-model="alumno.nombre" placeholder="AAA AAA" class="form-control">
+            <div class="row row-cols-1 p-2">
+                <div class="row-col">
+                    <div class="col-6 float-left">
+                        Fecha Prestamo
+                        <input type="date" required v-model="fechaprestamo" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-6 float-right">
+                        Fecha Devolucion
+                        <input type="date" required v-model="fechadevolucion" class="form-control form-control-sm">
+                    </div>
                 </div>
             </div>
-            <div class="row p-2">
-                <div class="col-4">
-                    DIRECCION
+            <div class="row-col">
+                <div class="col-6 float-left">
+                    Pelicula
+                    <v-select class="bg-primary" v-model="alquiler.pelicula":options="pelicula" placeholder="Pelicula"/>
                 </div>
-                <div class="col-8">
-                    <input type="text" v-model="alumno.direccion" placeholder="AAA" class="form-control">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-4">
-                    TEL
-                </div>
-                <div class="col-8">
-                    <input type="text" v-model="alumno.telefono" placeholder="0000-0000" class="form-control">
+                <div class="col-6 float-right">
+                    Cliente
+                    <v-select class="bg-primary" v-model="alquiler.cliente":options="cliente" placeholder="Cliente"/>
                 </div>
             </div>
-            <div class="row p-2"> 
-                <div class="col-12 text-center">
-                    <input id="btnGuardarAlumnos" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
-                    <input type="reset" class="btn btn-outline-warning text-white" value="Limpiar">
-                    <input type="button" class="btn btn-outline-success mostrar-buscar-alumnos text-white" data-modulo="alumnos" data-form="buscar-alumnos" value="Buscar">
+            <div class="row row-cols-1 p-2">
+                <div class="row-col">
+                    <div class="col">
+                    Valor:
+                    </div>
+                    <div class="col">
+                        <input type="text" required v-model="alquiler.valor" class="form-control form-control-sm">
+                    </div>
                 </div>
             </div>
-            <div class="row p-2">
-                <div class="col-12 text-center">
-                    <div class="alert alert-success" role="alert">
-                        {{ alumno.msg }}
+            <div class="row row-cols-1 p-2">
+                <div class="row-col text-center">
+                    <div class="col-12 text-center">
+                        <input id="btnguardarAlquiler" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
+                        <input type="reset" class="btn btn-outline-warning text-white" value="Limpiar">
+                        <input type="button" class="btn btn-outline-success mostrar-buscar-alquiler text-white" data-modulo="alquiler" data-form="buscar-clientes" value="Buscar">
+                    </div>
+            </div>
+            <div class="row row-cols-1 p-2">
+                <div class="row-col text-center">
+                    <div class="col">
+                        <div class="alert alert-success" role="alert">{{alquiler.msg }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<script src="public/vistas/alumnos/alumnos.js"></script>
+<script src="public/vistas/alquiler/alquiler.js"></script>

@@ -1,31 +1,31 @@
-var appBuscarAlquiler = new Vue({
-    el:'#frm-buscar-alquiler',
+var appbuscar_alquileres = new Vue({
+    el: '#frm-buscar-alquileres',
     data:{
-        misalquiler:[],
+        mis_alquileres:[],
         valor:''
     },
     methods:{
-        buscarAlquiler:function(){
-            fetch(`private/Modulos/alquiler/procesos.php?proceso=buscaralquiler&alquiler=${this.valor}`).then(resp=>resp.json()).then(resp=>{
-                this.misalquiler = resp;
-               
-                
+        buscarAlquiler(){
+            fetch(`private/modulos/alquileres/procesos.php?proceso=buscarAlquiler&alquiler=${this.valor}`).then( resp=>resp.json() ).then(resp=>{ 
+                this.mis_alquileres = resp;
             });
         },
-        modificarAlquiler:function(alquiler){
-            appalquiler.alquiler = alquiler;
-            appalquiler.alquiler.accion = 'modificar';
+        modificarAlquiler(alquiler){
+            appalquileres.alquiler = alquiler;
+            appalquileres.alquiler.accion = 'modificar';
         },
-        eliminarAlquiler:function(idalquiler){
-            if (confirm("Estas seguro de eliminar este registro?")){
-                fetch(`Private/Modulos/alquiler/procesos.php?proceso=eliminaralquiler&alquiler=${idalquiler}`).then(resp=>resp.json()).then(resp=>{
-                    this.buscarAlquiler();
-                });
-            }
-           
+        eliminarAlquiler(idAlquiler){
+            var confirmacion = confirm("¿estas seguro de eliminar el registro?..");
+            if (confirmacion){
+                alert(" El registro se elimino corretamente....");
+                fetch(`private/modulos/alquileres/procesos.php?proceso=eliminarAlquiler&alquiler=${idAlquiler}`).then(resp=>resp.json()).then(resp=>{
+                  this.buscarAlquiler();
+              });
+              }
+
         }
     },
-    created:function(){
+    created(){
         this.buscarAlquiler();
     }
 });

@@ -1,46 +1,43 @@
 Vue.component('v-select', VueSelect.VueSelect);
-var appalquiler = new Vue({
-    el:'#frm-alquiler',
+
+var appalquileres = new Vue({
+    el:'#frm-alquileres',
     data:{
         alquiler:{
             idAlquiler : 0,
             accion    : 'nuevo',
             cliente   : {
                 idCliente : 0,
-                nombre   : ''
+                cliente   : ''
             },
-            peliculas    : {
+            pelicula    : {
                 idPelicula : 0,
-                descripcion   : ''
+                pelicula   : ''
             },
-            fechaprestamo    : '',
-            fechadevolucion     :'',
+            fechaPrestamo  : '',
+            fechaDevolucion : '',
+            valor: '',
             msg       : ''
         },
-        cliente : {},
-        pelicula  : {}
+        clientes : {},
+        peliculas  : {}
     },
     methods:{
-        guardarAlquiler(){
-            fetch(`private/Modulos/alquiler/procesos.php?proceso=recibirDatos&alquiler=${JSON.stringify(this.alquiler)}`).then( resp=>resp.json() ).then(resp=>{
+        guardarAlquileres(){
+             fetch(`private/modulos/alquileres/procesos.php?proceso=recibirDatos&alquiler=${JSON.stringify(this.alquiler)}`).then( resp=>resp.json() ).then(resp=>{
                 this.alquiler.msg = resp.msg;
-            });
+            }); 
         },
-        limpiarAlquiler(){
-            this.alquiler.idalquiler=0;
+        limpiarAlquileres(){
+            this.alquiler.idAlquiler=0;
             this.alquiler.accion="nuevo";
-            this.alquiler.alquiler='';
-            this.alquiler.cliente='';
-            this.alquiler.peliculas='';
-            this.alquiler.fechaprestamo='';
-            this.alquiler.fechadevolucion='';
             this.alquiler.msg="";
         }
     },
     created(){
-        fetch(`private/Modulos/alquiler/procesos.php?proceso=traer_clientes_pelicula&alquiler=''`).then( resp=>resp.json() ).then(resp=>{
-            this.cliente = resp.cliente;
-            this.pelicula = resp.peliculas;
+         fetch(`private/modulos/alquileres/procesos.php?proceso=traer_cliente_pelicula&alquiler=''`).then( resp=>resp.json() ).then(resp=>{
+           this.clientes = resp.clientes;
+            this.peliculas = resp.peliculas; 
         });
     }
 });

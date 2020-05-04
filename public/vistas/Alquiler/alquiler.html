@@ -1,8 +1,8 @@
-<form v-on:submit.prevent="guardarAlquiler" data-accion="nuevo" data-idalumno='' id="frm-alumnos" method="post">
-    <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
+<form v-on:submit.prevent="guardarAlquiler" v-on:reset="limpiarAlquiler" id="frm-alquiler">
+    <div class="card text-white bg-dark mb-3">
         <div class="card-header">
-            Alquiler De Peliculas
-        
+            ALQUILER PELICULAS
+
             <button type="button" id="btn-close-alquiler" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -10,30 +10,34 @@
         <div class="card-body">
             <div class="row row-cols-1 p-2">
                 <div class="row-col">
+                   
                     <div class="col-6 float-left">
                         Fecha Prestamo
-                        <input type="date" required v-model="fechaprestamo" class="form-control form-control-sm">
+                        <input type="date" required v-model="alquiler.fechaP" class="form-control form-control-sm">
                     </div>
                     <div class="col-6 float-right">
                         Fecha Devolucion
-                        <input type="date" required v-model="fechadevolucion" class="form-control form-control-sm">
+                        <input type="date" required v-model="alquiler.fechaD" class="form-control form-control-sm">
                     </div>
+                   
                 </div>
             </div>
+           
             <div class="row-col">
+               
                 <div class="col-6 float-left">
-                    Pelicula
-                    <v-select class="bg-primary" v-model="alquiler.pelicula":options="pelicula" placeholder="Pelicula"/>
+                    peli
+                    <v-select class="bg-primary" v-model="alquiler.pelicula":options="pelicula" placeholder="Pelicula" />
                 </div>
                 <div class="col-6 float-right">
-                    Cliente
-                    <v-select class="bg-primary" v-model="alquiler.cliente":options="cliente" placeholder="Cliente"/>
+                    cliente
+                    <v-select class="bg-primary" v-model="alquiler.cliente":options="cliente" placeholder="Cliente" />
                 </div>
             </div>
             <div class="row row-cols-1 p-2">
                 <div class="row-col">
                     <div class="col">
-                    Valor:
+                        VALOR:
                     </div>
                     <div class="col">
                         <input type="text" required v-model="alquiler.valor" class="form-control form-control-sm">
@@ -42,11 +46,11 @@
             </div>
             <div class="row row-cols-1 p-2">
                 <div class="row-col text-center">
-                    <div class="col-12 text-center">
-                        <input id="btnguardarAlquiler" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
+                    <div class="col">
+                        <input id="btnGuardaalquiler" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
                         <input type="reset" class="btn btn-outline-warning text-white" value="Limpiar">
-                        <input type="button" class="btn btn-outline-success mostrar-buscar-alquiler text-white" data-modulo="alquiler" data-form="buscar-clientes" value="Buscar">
-                    </div>
+                        <input type="button" class="btn btn-outline-success mostrar-buscar-alquiler text-white" data-modulo="alquiler" data-form="buscar-alquiler" value="Buscar" >
+                </div>
             </div>
             <div class="row row-cols-1 p-2">
                 <div class="row-col text-center">
